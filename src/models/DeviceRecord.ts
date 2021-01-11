@@ -66,6 +66,10 @@ export abstract class DeviceRecord implements Serializable {
     }
   }
 
+  test2Arsen(){
+ 	 console.log("Arsen")
+  }
+
   serialize(): FlattenedDeviceRecord {
     const serializedBundle: FlattenedDeviceRecord = {
       device_type: this.deliveryPlatform,
