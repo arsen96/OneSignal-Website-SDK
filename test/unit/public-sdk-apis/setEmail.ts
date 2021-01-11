@@ -90,8 +90,8 @@ async function expectEmailRecordCreationRequest(
       const anyValues = [
         "device_type",
         "language",
-        "timezone",
-        "device_os",
+        // "timezone",
+        // "device_os",
         "sdk",
         "device_model"
       ];
@@ -126,8 +126,8 @@ async function expectEmailRecordUpdateRequest(
       const anyValues = [
         "device_type",
         "language",
-        "timezone",
-        "device_os",
+        // "timezone",
+        // "device_os",
         "sdk",
         "device_model"
       ];

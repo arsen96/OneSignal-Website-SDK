@@ -800,8 +800,8 @@ async function inspectPushRecordCreationRequest(t: ExecutionContext, requestStub
   const anyValues = [
     "device_type",
     "language",
-    "timezone",
-    "device_os",
+    // "timezone",
+    // "device_os",
     "sdk",
     "device_model",
     "identifier",

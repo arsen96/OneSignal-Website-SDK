@@ -9,12 +9,12 @@ import { OneSignalUtils } from "../utils/OneSignalUtils";
 
 export interface FlattenedDeviceRecord {
   device_type: DeliveryPlatformKind;
-  language: string;
-  timezone: number;
-  device_os: number;
+  // language: string;
+  // timezone: number;
+  // device_os: number;
   sdk: string;
   notification_types: SubscriptionStateKind | undefined;
-  device_model: string;
+  // device_model: string;
   // TODO: Make it a required parameter
   app_id?: string;
 }
@@ -26,10 +26,10 @@ export interface FlattenedDeviceRecord {
  */
 export abstract class DeviceRecord implements Serializable {
   public deliveryPlatform: DeliveryPlatformKind;
-  public language: string;
-  public timezone: number;
-  public browserVersion: number;
-  public deviceModel: string;
+  // public language: string;
+  // public timezone: number;
+  // public browserVersion: number;
+  // public deviceModel: string;
   public sdkVersion: string;
   public appId: string | undefined;
   public subscriptionState: SubscriptionStateKind | undefined;
@@ -37,11 +37,11 @@ export abstract class DeviceRecord implements Serializable {
   constructor() {
     // TODO: Possible implementation for appId initialization
     // this.appId = OneSignal.context.appConfig.appId;
-    this.language = Environment.getLanguage();
-    this.timezone = new Date().getTimezoneOffset() * -60;
-    const browserVersion = parseInt(String(bowser.version), 10);
-    this.browserVersion = isNaN(browserVersion) ? -1 : browserVersion;
-    this.deviceModel = navigator.platform;
+    // this.language = Environment.getLanguage();
+    // this.timezone = new Date().getTimezoneOffset() * -60;
+    // const browserVersion = parseInt(String(bowser.version), 10);
+    // this.browserVersion = isNaN(browserVersion) ? -1 : browserVersion;
+    // this.deviceModel = navigator.platform;
     this.sdkVersion = Environment.version().toString();
     this.deliveryPlatform = this.getDeliveryPlatform();
     // Unimplemented properties are appId, subscriptionState, and subscription
@@ -67,16 +67,16 @@ export abstract class DeviceRecord implements Serializable {
   }
 
   test2Arsen(){
- 	 console.log("Arsen")
+ 	  console.log("Arsen")
   }
 
   serialize(): FlattenedDeviceRecord {
     const serializedBundle: FlattenedDeviceRecord = {
       device_type: this.deliveryPlatform,
-      language: this.language,
-      timezone: this.timezone,
-      device_os: this.browserVersion,
-      device_model: this.deviceModel,
+      // language: this.language,
+      // timezone: this.timezone,
+      // device_os: this.browserVersion,
+      // device_model: this.deviceModel,
       sdk: this.sdkVersion,
       notification_types: this.subscriptionState,
     };
