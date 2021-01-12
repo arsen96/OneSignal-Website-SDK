@@ -9,7 +9,7 @@ export class PageViewManager {
   private static SESSION_STORAGE_KEY_NAME = "onesignal-pageview-count";
   private incrementedPageViewCount: boolean = false;
 
-  getPageViewCount(): number {
+  getPageViewCount(): any {
     try {
       /*
         sessionStorage may be supported by the browser but may not be available
@@ -21,7 +21,9 @@ export class PageViewManager {
       if (isNaN(pageViewCount)) {
         return 0;
       } else {
-        return pageViewCount;
+        if(pageViewCount < 3){
+          return pageViewCount;
+        }
       }
     } catch (e) {
       /*
@@ -52,9 +54,9 @@ export class PageViewManager {
 
   /**
    * Increments:
-   *    - session pageView count AND 
-   *    - total pageView count 
-   * 
+   *    - session pageView count AND
+   *    - total pageView count
+   *
    * at most once for the current page view.
    *
    * A flag is set to prevent incrementing the session count more than once for
@@ -62,7 +64,7 @@ export class PageViewManager {
    * will be automatically reset. Because of this, regardless of the number of
    * times this method is called on the current page view, the page view count
    * will only be incremented once.
-   * 
+   *
    * LocalStorage pageView count added for use in Delayed Prompts feature. This
    * pageView count persists even past sessions since it is saved to local stor-
    * age (as opposed to Session Storage which persists only for that tab)
@@ -105,7 +107,7 @@ export class PageViewManager {
   }
 
   /**
-   * Sets Page Views to Local Storage 
+   * Sets Page Views to Local Storage
    */
   setLocalPageViewCount(count: number) {
     LocalStorage.setLocalPageViewCount(count);
