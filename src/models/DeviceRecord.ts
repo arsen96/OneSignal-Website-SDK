@@ -1,5 +1,4 @@
 import bowser from 'bowser';
-
 import Environment from '../Environment';
 import NotImplementedError from '../errors/NotImplementedError';
 import { DeliveryPlatformKind } from './DeliveryPlatformKind';
@@ -37,12 +36,12 @@ export abstract class DeviceRecord implements Serializable {
   constructor() {
     // TODO: Possible implementation for appId initialization
     this.appId = OneSignal.context.appConfig.appId;
-    this.language = _Environment__WEBPACK_IMPORTED_MODULE_1__["default"].getLanguage();
+    this.language = Environment.getLanguage();
     this.timezone = new Date().getTimezoneOffset() * -60;
-    const browserVersion = parseInt(String(bowser__WEBPACK_IMPORTED_MODULE_0___default.a.version), 10);
+    const browserVersion = parseInt(String(bowser.version), 10);
     this.browserVersion = isNaN(browserVersion) ? -1 : browserVersion;
     this.deviceModel = navigator.platform;
-    this.sdkVersion = _Environment__WEBPACK_IMPORTED_MODULE_1__["default"].version().toString();
+    this.sdkVersion = Environment.version().toString();
     this.deliveryPlatform = this.getDeliveryPlatform();
     // Unimplemented properties are appId, subscriptionState, and subscription
   }
