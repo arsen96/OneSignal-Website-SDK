@@ -9,12 +9,12 @@ import { OneSignalUtils } from "../utils/OneSignalUtils";
 
 export interface FlattenedDeviceRecord {
   device_type: DeliveryPlatformKind;
-  // language: string;
-  // timezone: number;
-  // device_os: number;
+  language: string;
+  timezone: string;
+  device_os: string;
   sdk: string;
   notification_types: SubscriptionStateKind | undefined;
-  // device_model: string;
+  device_model: string;
   // TODO: Make it a required parameter
   app_id?: string;
 }
@@ -26,23 +26,23 @@ export interface FlattenedDeviceRecord {
  */
 export abstract class DeviceRecord implements Serializable {
   public deliveryPlatform: DeliveryPlatformKind;
-  // public language: string;
-  // public timezone: number;
-  // public browserVersion: number;
-  // public deviceModel: string;
-  public sdkVersion: string;
-  public appId: string | undefined;
+  public language: any;
+  public timezone: any;
+  public browserVersion: any;
+  public deviceModel: any;
+  public sdkVersion: any;
+  public appId: any;
   public subscriptionState: SubscriptionStateKind | undefined;
 
   constructor() {
     // TODO: Possible implementation for appId initialization
-    // this.appId = OneSignal.context.appConfig.appId;
-    // this.language = Environment.getLanguage();
-    // this.timezone = new Date().getTimezoneOffset() * -60;
-    // const browserVersion = parseInt(String(bowser.version), 10);
-    // this.browserVersion = isNaN(browserVersion) ? -1 : browserVersion;
-    // this.deviceModel = navigator.platform;
-    this.sdkVersion = Environment.version().toString();
+    this.appId = OneSignal.context.appConfig.appId;
+    this.language = _Environment__WEBPACK_IMPORTED_MODULE_1__["default"].getLanguage();
+    this.timezone = new Date().getTimezoneOffset() * -60;
+    const browserVersion = parseInt(String(bowser__WEBPACK_IMPORTED_MODULE_0___default.a.version), 10);
+    this.browserVersion = isNaN(browserVersion) ? -1 : browserVersion;
+    this.deviceModel = navigator.platform;
+    this.sdkVersion = _Environment__WEBPACK_IMPORTED_MODULE_1__["default"].version().toString();
     this.deliveryPlatform = this.getDeliveryPlatform();
     // Unimplemented properties are appId, subscriptionState, and subscription
   }
@@ -73,12 +73,12 @@ export abstract class DeviceRecord implements Serializable {
   serialize(): FlattenedDeviceRecord {
     const serializedBundle: FlattenedDeviceRecord = {
       device_type: this.deliveryPlatform,
-      // language: this.language,
-      // timezone: this.timezone,
-      // device_os: this.browserVersion,
-      // device_model: this.deviceModel,
-      sdk: this.sdkVersion,
-      notification_types: this.subscriptionState,
+       language: "unknown",
+       timezone: "unknown",
+       device_os: "?",
+       device_model: "unknown",
+       sdk: this.sdkVersion,
+       notification_types: this.subscriptionState,
     };
 
     if (this.appId) {

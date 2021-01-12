@@ -203,7 +203,7 @@ export class ServiceWorkerManager {
       // No, if configured to use our subdomain (AKA HTTP setup) AND this is on their page (HTTP or HTTPS).
       // But since safari does not need subscription workaround, installing SW for session tracking.
       if (
-        OneSignal.environmentInfo.browserType !== "safari" && 
+        OneSignal.environmentInfo.browserType !== "safari" &&
           SdkEnvironment.getWindowEnv() === WindowEnvironmentKind.Host
       ) {
         return false;
@@ -451,8 +451,8 @@ export class ServiceWorkerManager {
     const installUrlQueryParams = Utils.encodeHashAsUriComponent({
       appId: this.context.appConfig.appId
     });
-    const fullWorkerPath = `${workerFullPath}?${installUrlQueryParams}`;
-    const scope = `${OneSignalUtils.getBaseUrl()}${this.config.registrationOptions.scope}`;
+    const fullWorkerPath = "http://localhost:8100/assets/Dev-OneSignalSDKWorker.js";
+    const scope = `http://localhost:8100/assets/`;
     Log.info(`[Service Worker Installation] Installing service worker ${fullWorkerPath} ${scope}.`);
     try {
       await navigator.serviceWorker.register(fullWorkerPath, { scope });
